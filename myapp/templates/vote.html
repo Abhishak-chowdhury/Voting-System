@@ -1,0 +1,50 @@
+{% extends 'user-base.html' %}
+{% block title %}vote{% endblock %}
+{% block content %}
+    <div class="container">
+      {% if user_object.status == 'False' %}
+        <h2 style="color: red; margin-top: 15px; font-weight: 900;">YOU ARE NOT ELIGABLE TO VOTE RIGHT NOW UNTILL ADMIN ARE NOT PERMISSION YOU.WAIT A MOMENT AND LOGIN AFTER SOME TIME....</h2>
+      {% else %}
+        {% if is_voted %}
+       
+        <h2 style="color: red; text-align: center;margin-top: 20px;">You Have Already Voted To Your Favourite Candidate.</h2>
+        {% else %}
+        <h3 class="text-center custom-h3">Vote For Elections</h3>
+        {% include 'messa.html' %}
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Party Image</th>
+                <th scope="col">Party Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for candidate_obj in candidate_objs %}
+              <tr>
+                
+                <td><img src="{{candidate_obj.candidate_img.url}}" alt="candidate_img" style="width: 130px; height: 130px;"></td>
+                <td>{{candidate_obj.name}}</td>
+                <td><img src="{{candidate_obj.party_img.url}}" alt="candidate_img" style="width: 130px; height: 130px;"></td>
+                <td>{{candidate_obj.party_name}}</td>
+                <td>{{candidate_obj.address}}</td>
+                <td>
+                    <form action="{% url 'vote-done' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{candidate_obj.election_name.id}}" name="e_id">
+                        <input type="hidden" value="{{candidate_obj.id}}" name="c_id">
+                        <button type="submit" class="btn btn-warning">Vote</button>
+                    </form>
+                    
+                </td>
+              </tr>
+                {% endfor %}  
+            </tbody>
+          </table>
+        {% endif %}
+      {% endif %}
+    </div>
+{% endblock %}

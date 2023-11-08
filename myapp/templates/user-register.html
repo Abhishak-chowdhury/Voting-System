@@ -1,0 +1,82 @@
+{% extends 'base-index.html' %}
+{% block title %}User-register{% endblock %}
+    {% block content %}
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <h3 class="text-center custom-h3">Registration</h3>
+                    {% include 'messa.html' %}
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="FirstName" class="form-label">*Enter your First Name</label>
+                          <input type="text" class="form-control" id="FirstName" aria-describedby="emailHelp" name="firstname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">*Enter your Last Name</label>
+                            <input type="text" class="form-control" id="LastName" aria-describedby="emailHelp" name="lastname" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">*Enter your Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            
+                          </div>
+                          <div class="mb-3">
+                            <label for="PhoneNumber" class="form-label">*Enter your Phone Number</label>
+                            <input type="number" class="form-control" id="PhoneNumber" aria-describedby="emailHelp" name="ph" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="Zip" class="form-label">*Enter your Zip</label>
+                            <input type="number" class="form-control" id="Zip" aria-describedby="emailHelp" name="zip" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="City" class="form-label">*Enter your City</label>
+                            <input type="text" class="form-control" id="City" aria-describedby="emailHelp" name="city" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="City" class="form-label">*Select your Gender</label>
+                            <select class="form-select" aria-label="Default select example" name="gender">
+                                
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                              </select>
+                          </div>
+                         
+                          <div class="mb-3">
+                            <label for="Address" class="form-label">*Enter your Address</label>
+                            <input type="text" class="form-control" id="Address" aria-describedby="emailHelp" name="address" required>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label for="VoterCardNumber" class="form-label">*Enter your Voter Card Number</label>
+                            <input type="number" class="form-control" id="VoterCardNumber" aria-describedby="emailHelp" name="vcard_number" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="">*Select profile picture</label>
+                            <input type="file" name="p_img">
+                          </div>
+                          <div class="mb-3">
+                            <label for="">*Select votercard picture</label>
+                            <input type="file" name="v_img">
+                          </div>
+                        <div class="mb-3">
+
+                          <label for="exampleInputPassword1" class="form-label">*Enter Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+                        </div>
+                        <div class="mb-3">
+
+                            <label for="exampleInputPassword2" class="form-label">*Reenter your Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" name="re-password" required>
+                          </div>
+                        
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+        
+    {% endblock %}
+

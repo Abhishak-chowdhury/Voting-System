@@ -1,0 +1,49 @@
+{% extends 'admin-base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <h3 class="text-center custom-h3">VOTER LISTS</h3>
+    {% include 'messa.html' %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">PROFILE</th>
+            <th scope="col">NAME</th>
+            <th scope="col">ADDRESS</th>
+            <th scope="col">VOTER NUMBER</th>
+            <th scope="col">VOTER IMAGE</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for voter in voters %}
+          <tr>
+            <td><img src="{{voter.profile_img.url}}" alt="profile_img" style="width: 150px; height: 150px;"></td>
+            <td>{{voter.user.first_name}} {{voter.user.last_name}}<br><b style="font-weight: 500;">Gender -</b> {{voter.gender}}</td>
+            <td>{{voter.address}}<br><b style="font-weight: 500;">Ph-</b> {{voter.phone_number}}
+              <br><b style="font-weight: 500;">city-</b> {{voter.city}}
+              <br><b style="font-weight: 500;">zip-</b> {{voter.zip}}
+              
+            </td>
+            <td>{{voter.voter_number}}</td>
+            <td><img src="{{voter.voter_img.url}}" alt="profile_img" style="width: 200px; height: 150px;"></td>
+            <td>{{voter.status}}</td>
+            <td>
+              {% if voter.status == 'False' %}
+              <form action="{% url 'activate-voter' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{voter.id}}" name="user_id">
+                <button type="submit" class="btn btn-warning">Active</button>
+              </form>
+              {% else %}
+              Activated
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

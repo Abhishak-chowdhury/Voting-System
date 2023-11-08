@@ -1,0 +1,34 @@
+{% extends 'admin-base.html' %}
+{% block title %}Admin-dashboard{% endblock %}
+{% block content %}
+    <div class="container">
+        <h3 class="text-center custom-h3">About of online voting</h3>
+        {% include 'messa.html' %}
+        <div class="container text-center d-flex justify-content-center">
+            <div class="row align-items-start">
+              <div class="col-6">
+                <div class="card" style="width: 27rem;">
+                    <img src="/static/image/card-1.png" class="card-img-top" alt="..." style="height: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-size: 22px; font-weight: 500;">Electronic voting</h5>
+                      <p class="card-text">Electronic voting (also known as e-voting) is voting that uses electronic means to either aid or take care of casting and counting ballots.
+                        Depending on the particular implementation, e-voting may use standalone electronic voting machines (also called EVM) or computers connected to the Internet (online voting). It may encompass a range of Internet services, from basic transmission of tabulated results to full-function online voting through common connectable household devices.</p>
+                      
+                    </div>
+                  </div>
+              </div>
+              <div class="col-6">
+                <div class="card" style="width: 27rem;">
+                    <img src="/static/image/card-2.jpg" class="card-img-top" alt="..." style="height: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-size: 22px; font-weight: 500;">Vote online</h5>
+                      <p class="card-text">Electronic voting technology intends to speed the counting of ballots, reduce the cost of paying staff to count votes manually and can provide improved accessibility for disabled voters.computers connected to the Internet (online voting). It may encompass a range of Internet services, from basic transmission of tabulated results to full-function onvoting through common connectable household devices.computers connected to the Internet (online voting).particular implementation, e-voting may use standalone.</p>
+                      
+                    </div>
+                  </div>
+              </div>
+              
+            </div>
+          </div>
+    </div>
+{% endblock %}

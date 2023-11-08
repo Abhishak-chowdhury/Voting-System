@@ -1,0 +1,27 @@
+{% extends 'user-base.html' %}
+{% block title %}Elections{% endblock %}
+{% block content %}
+    <div class="container">
+      {% if user_object.status == 'False' %}
+        <h2 style="color: red; margin-top: 15px; font-weight: 900;">YOU ARE NOT ELIGABLE TO VOTE RIGHT NOW UNTILL ADMIN ARE NOT PERMISSION YOU.WAIT A MOMENT AND LOGIN AFTER SOME TIME....</h2>
+      {% else %}
+        <h3 class="text-center custom-h3">Available Elections</h3>
+        {% include 'messa.html' %}
+        <div class="col-6 mx-auto">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                <label for="" class="form-label">Choose Available Elections</label>
+                <select class="form-select" aria-label="Default select example" name="election">
+                    {% for election in elections %}
+                    <option value="{{election.election_name}}">{{election.election_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success w-50" style="margin: 0rem 8.7rem;">Submit</button>
+              </form>
+        </div>
+        
+      {% endif %}
+    </div>
+{% endblock %}

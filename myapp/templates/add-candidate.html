@@ -1,0 +1,46 @@
+{% extends 'admin-base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <h3 class="text-center custom-h3">ADD ELECTIONS</h3>
+    {% include 'messa.html' %}
+    <div class="col-10 mx-auto">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">*Select Available Election</label>
+              <select class="form-select" aria-label="Default select example" name="election_name">
+                {% for election in elections %}
+                <option value="{{election.election_name}}">{{election.election_name}}</option>
+                {% endfor %}
+                
+                
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">*Enter Name</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="partyname" class="form-label">*Enter Party Name</label>
+                <input type="text" class="form-control" id="partyname" name="partyname">
+              </div>
+              <div class="mb-3">
+                <label for="Address" class="form-label">*Enter Address</label>
+                <input type="text" class="form-control" id="Address" name="address">
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">*Choose Party image</label>
+                <input type="file" class="form-control" id="image" name="party_img">
+              </div>
+              <div class="mb-3">
+                <label for="image1" class="form-label">*Choose Candidate image</label>
+                <input type="file" class="form-control" id="image1" name="candidate_img">
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    
+</div>
+
+{% endblock %}

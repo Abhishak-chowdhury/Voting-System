@@ -1,0 +1,47 @@
+{% extends 'admin-base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <h3 class="text-center custom-h3">ADD ELECTIONS</h3>
+    {% include 'messa.html' %}
+    <div class="col-6 mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="text1" class="form-label">Enter Election Name</label>
+              <input type="text" class="form-control" id="text1" aria-describedby="emailHelp" name="electionname">
+              
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Select End Date</label>
+              <input type="date" class="form-control" id="exampleInputPassword1" name="enddate">
+            </div>
+            
+            <button type="submit" class="btn btn-success w-100">Add</button>
+          </form>
+    </div>
+    <h5 class="text-center custom-h3" style="color: #59298f;"><u>Available Elections</u></h5>
+    <div class="col-6 mx-auto">
+      <table class="table table-bordered border-dark table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Election Name</th>
+            <th scope="col">End date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for election in elections %}
+          <tr>
+           
+            <td>{{election.election_name}}</td>
+            <td>{{election.end_time}}</td>
+            <td>{% if  election.end_time > today %}Active{% else %}Ended{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}

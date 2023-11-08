@@ -1,0 +1,25 @@
+{% extends 'admin-base.html' %}
+{% block title %}Search-result{% endblock %}
+{% block content %}
+    <div class="container">
+      
+        <h3 class="text-center custom-h3">Search Result</h3>
+        
+        <div class="col-6 mx-auto">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                <label for="" class="form-label">Choose Available Elections</label>
+                <select class="form-select" aria-label="Default select example" name="election">
+                    {% for election in elections %}
+                    <option value="{{election.election_name}}">{{election.election_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success w-50" style="margin: 0rem 8.7rem;">Search</button>
+              </form>
+        </div>
+        
+      
+    </div>
+{% endblock %}

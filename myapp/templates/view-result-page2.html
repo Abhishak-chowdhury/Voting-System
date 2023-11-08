@@ -1,0 +1,41 @@
+{% extends 'admin-base.html' %}
+{% block title %}view-result{% endblock %}
+{% block content %}
+    <div class="container">
+      
+        <h3 class="text-center custom-h3">View Result</h3>
+        
+        
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Party image</th>
+                <th scope="col">Party name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Vote</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for candidate_obj in candidate_objs %}
+              <tr>
+               
+                <td><img src="{{candidate_obj.candidate_img.url}}" alt="" style="width: 130px; height: 130px;"></td>
+                <td>{{candidate_obj.name}}</td>
+                <td><img src="{{candidate_obj.party_img.url}}" alt="" style="width: 130px; height: 130px;"></td>
+                <td>{{candidate_obj.party_name}}</td>
+                <td>{{candidate_obj.address}}</td>
+                <td>{{candidate_obj.vote_count}}</td>
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+       {% if heighest_vote %}
+       <h3 style="text-align: right;
+       color: red;
+       font-size: 19px;">{{heighest_vote.candidate_name.name |upper}} IS NOW BEATING TO OTHER CANDIDATES.</h3>
+        {% endif %}
+      
+    </div>
+{% endblock %}
